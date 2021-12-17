@@ -1,5 +1,6 @@
-import React, { memo } from "react";
+import React, { memo,useEffect, setData} from "react";
 import swal from 'sweetalert'
+import { remove } from "../../helpers/fetch";
 
 
 export const StatusCompra =  memo(({ title, img,cantidad,precio,id }) => {
@@ -8,18 +9,18 @@ export const StatusCompra =  memo(({ title, img,cantidad,precio,id }) => {
 const  cancelar = async (params) => {
   const value = await swal("¿Esta seguro que desea cancelar la reserva?", { buttons: true });
   if(!value) return
-
-  const url = `http://localhost:5660/api/reserva`;
-  const resp = await fetch(url, {
-    method: 'POST',
-    headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-        id,
-    })
-});
+    const fetchTypeIdentity = async () => {
+      await remove(`reservations/${id}`)
+      .then((res) => res.json())
+      .then(({payload}) => {
+        console.log(payload);
+        setData(payload);
+      })
+      .catch(() => {});
+    };
+  
+   fetchTypeIdentity();
+    // eslint-disable-next-line
 
 }
 

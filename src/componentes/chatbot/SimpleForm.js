@@ -5,7 +5,6 @@ import PrecioServicio from '../servicios/PrecioServicio';
 import CompraProducto from '../servicios/CompraProducto';
 import Clasificacion from '../clasificacion/Clasificacion';
 import StatusCarta from '../servicios/StatusCarta';
-import Ubicacion from '../servicios/ubicacion';
 
 
 
@@ -35,26 +34,26 @@ class SimpleForm extends Component {
         <ThemeProvider theme  ={theme }>
       <ChatBot
        
-       headerTitle="Asistente virtual"
+       headerTitle="Repuesto de piezas"
        placeholder="Escriba su mensaje"
-       botAvatar="https://blog.jumia.com.ng/wp-content/uploads/2017/09/Jumia_Bot_Logo_Right-1.png"
-       userAvatar="https://cdn.iconscout.com/icon/free/png-256/avatar-370-456322.png"
+       botAvatar="https://pngset.com/images/one-bot-discord-avatar-label-text-accessories-goggles-transparent-png-857567.png"
+       userAvatar="https://www.pngkey.com/png/detail/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png"
        recognitionLang="es"
 
 
        steps={[
         {
           id: "1",
-          message: `Hola, ¿En que podemos ayudarlo?`,
+          message: `Saludos, en que le puedo ayudar`,
           trigger: "usuario",
         },
         {
           id: "usuario",
           user: true,
-          trigger: ({ value, steps }) => Clasificacion(value),
+          trigger: ({ value }) => Clasificacion(value),
         },
         {
-          id: "status",
+          id: "reservaciones",
           component: <StatusCarta />,
           trigger: "asistente",
         },
@@ -69,9 +68,9 @@ class SimpleForm extends Component {
           trigger: "asistente",
         },
         {
-          id: "sin-respuesta",
+          id: "no-entiendo",
           message:
-            "La pregunta no es entendible para el asistente virtual, favor escribanos al correo: watchstore@gmail.com",
+            "Disculpe, no le pude entender.",
           trigger: "consultar",
         },
         {
@@ -87,7 +86,6 @@ class SimpleForm extends Component {
             { value: 2, label: "Precio de los reloj", trigger: "precio-servicios" },
             { value: 3, label: "comprar el producto", trigger: "comprar" },
             { value: 4, label: "¿Deseas algo mas?", trigger: "pregunta" },
-            { value: 5, label: "¿Cual es su ubicacion?", trigger: "ubicacion" },
           ],
         },
         {
@@ -100,14 +98,10 @@ class SimpleForm extends Component {
           message: "¿Cual es su pregunta?.",
           trigger: "usuario",
         },
-        {
-          id: "ubicacion",
-          component: <Ubicacion />,
-          trigger: "usuario",
-        },
+        
         {
           id: "terminar",
-          message: "Hasta pronto.",
+          message: "Cuidate mucho.",
           end: true,
         },
       ]}

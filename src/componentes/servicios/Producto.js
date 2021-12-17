@@ -27,7 +27,6 @@ const  Compra = async (params) => {
         price:precio,
 });
 
-console.log(resp);
 swal("Compra realizada con existo", "La factura se le envio por correo", "success");
 setCantidad(0)
 setCantidadDisponible(cantidaDisponible-cantidad)

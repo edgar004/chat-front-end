@@ -4,17 +4,24 @@ import spanish from "../../../node_modules/natural/lib/natural/stemmers/porter_s
 export const Entrenar = () => {
   const classifier = new natural.LogisticRegressionClassifier(spanish);
 
-   classifier.addDocument("encargados estatus pedidos", "status");
-   classifier.addDocument("cuantos cuentas los reloj precios precio", "precio-servicios");
-   classifier.addDocument("ver productos disponibles", "precio-servicios");
-   classifier.addDocument("información sobre el producto", "servicio");
-   classifier.addDocument("comprar", "comprar");
-   classifier.addDocument("ubicacion direccion ubicados", "ubicacion");
 
+  classifier.addDocument("ver ventas", "comprar");
+  classifier.addDocument("comprar", "comprar");
+  classifier.addDocument("que vendes", "comprar");
+  classifier.addDocument("digame sus existencias", "precio-servicios");
+
+
+   classifier.addDocument("ver productos disponibles", "precio-servicios");
+   classifier.addDocument("productos", "precio-servicios");
+   classifier.addDocument("cuales productos tienes", "precio-servicios");
+
+
+   classifier.addDocument("ver reservaciones", "reservaciones");
+   classifier.addDocument("mis reservaciones", "reservaciones");
+   classifier.addDocument("mis pedidos", "reservaciones");
    
    classifier.addDocument("Salir", "terminar");
    classifier.addDocument("Terminar conversacion", "terminar");
-   classifier.addDocument("Nada", "terminar");
    classifier.train();
  
 
