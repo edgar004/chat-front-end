@@ -6,7 +6,7 @@ export const Entrenar = () => {
 
    classifier.addDocument("encargados estatus pedidos", "status");
    classifier.addDocument("cuantos cuentas los reloj precios precio", "precio-servicios");
-   classifier.addDocument("productos disponibles", "precio-servicios");
+   classifier.addDocument("ver productos disponibles", "precio-servicios");
    classifier.addDocument("información sobre el producto", "servicio");
    classifier.addDocument("comprar", "comprar");
    classifier.addDocument("ubicacion direccion ubicados", "ubicacion");

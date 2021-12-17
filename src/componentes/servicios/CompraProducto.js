@@ -1,45 +1,49 @@
-import React, { memo } from "react";
-import { useFetch } from "../Fetch/useFetch";
+import React, { memo, useEffect, useState } from "react";
 import Producto from '../servicios/Producto';
+import { get } from "../../helpers/fetch";
 
 const PrecioServicio = memo(() => {
-  const url = `http://localhost:5660/api/producto`;
- const { loading, data } = useFetch(url);
+  const [data, setData] = useState([]);
  
+ useEffect(() => {
+  const fetchTypeIdentity = async () => {
+    await get('products')
+      .then((res) => res.json())
+      .then(({payload}) => {
+        setData(payload);
+      })
+      .catch(() => {});
+  };
+
+  fetchTypeIdentity();
+  // eslint-disable-next-line
+}, []);
+
   return (
     <>
-      {loading ? (
-        <div className="text-center">
-        <div
-          className="spinner-border text-primary"
-          style={{ width: "3rem", height: "3rem" }}
-          role="status"
-        >
-          <span className="sr-only">Loading...</span>
-        </div>
-      </div>
-      ) : data.length ? (
+      {data.length ? (
         <ul className="list-group list-group-flush">
           <li key="servicios" className="list-group-item">
             <h3>Comprar producto</h3>
           </li>
           {data.map((v) => {
             const {
-              precio,
-              nombre,
+              id,
+              price,
+              name,
                img,
-               cantidad
+               amount
             } = v;
             return (
-              <li key={v._id} className="list-group-item">
+              <div key={id} className="list-group-item">
                 <Producto
-                  id={v._id}
-                  title={nombre}
-                  cantidadPro={cantidad}
+                  id={id}
+                  title={name}
+                  cantidadPro={amount}
                   img={img}
-                  precio={precio}
+                  precio={price}
                 />
-              </li>
+              </div>
             );
           })}
         </ul>

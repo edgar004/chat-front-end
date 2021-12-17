@@ -1,18 +1,18 @@
-import './App.css';
-import SimpleForm from './componentes/chatbot/SimpleForm';
-import Login from './componentes/chatbot/login/Login';
+import React, { useState } from "react";
+import { AppRouter } from "../src/Router/UserRouter";
+import { UserContext } from "./context/UserContext";
 
 function App() {
+  const [user, setUser] = useState({
+    cedula: "40212345667",
+    nombre: "qweqwewe",
+    email: "e@gmail.com",
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-       WatchStore | ChatBot
-       {/* <Login/> */}
-      </header>
-      
-      <SimpleForm/> 
-      
-    </div>
+    <UserContext.Provider value={{ user, setUser }}>
+      <AppRouter />
+    </UserContext.Provider>
   );
 }
 

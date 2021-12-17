@@ -1,8 +1,13 @@
-import React, { memo, useState } from "react";
+import React, { memo, useState,useContext} from "react";
 import swal from 'sweetalert';
+import { UserContext } from "../../context/UserContext";
+import { post } from "../../helpers/fetch";
 
 
 export const Producto = memo(({id, title, img, precio,cantidadPro }) => {
+  const {
+    user: { cedula,email,nombre },
+  } = useContext(UserContext);
 
   const [cantidad,setCantidad]=useState(0)
   const [cantidaDisponible,setCantidadDisponible]=useState(cantidadPro)
@@ -13,20 +18,13 @@ const  Compra = async (params) => {
     swal(`La cantidad disponible son:${cantidadPro}`, "Ha superado el límite en stock.", "warning");
     return;
   }
-  const url = `http://localhost:5660/api/compra`;
-  const resp = await fetch(url, {
-    method: 'POST',
-    headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-        id_producto :id,
-        cantidad : cantidad,
-        precio,
-        total:cantidad*precio,
-        correo:"ariel.rd.004@hotmail.com"
-    })
+  const resp = await post('reservations', {
+        name:nombre,
+        identificationCard:cedula,
+        email:email,
+        idProduct :id,
+        amount : cantidad,
+        price:precio,
 });
 
 console.log(resp);
@@ -43,19 +41,19 @@ setCantidadDisponible(cantidaDisponible-cantidad)
 
   return (
 
-    <div className="card" style={{ width: '100%', backgroundColor:'#ebeded', borderRadius: '15px' }}>
-    <h4 style={{ marginTop:'20px', paddingTop:'14px' }} className="card-header">{title}</h4>
-    <h5 className="card-header">Precio: {precio}</h5>
-    <h5 className="card-header">Cantidad: {cantidaDisponible}</h5>
+    <div className="card" style={{ width: '100%', backgroundColor:'#458697', borderRadius: '15px', padding:'5px', margin:'5px'}}>
+    <h1 style={{ fontSize: '18px', textAlign:'center', marginTop:'5px', marginLeft:'5px', paddingTop: '15px' , fontFamily: 'Montserrat', color:'#FFFFFF'}}>{title}</h1>
+    <h5 style={{ margin: '-9px',textAlign:'center', color:'#FFFFFF'}}>Precio: {precio} $</h5>
+    <h5 style={{ textAlign:'center',color:'#FFFFFF'}}>Cantidad: {cantidaDisponible}</h5>
 
     <div className="card-body">
-      <img src={img} style={{ width: '50%', paddingBottom:'15px' }}  className="card-img" alt={title} />
+      <img src={img} style={{ width: '50%',  margin:'auto', border: '5px #FFFFFF', display:'flex'}} alt={title} />
     </div>
 
-    {cantidaDisponible>0 ? ( <div> Cantidad:<input value={cantidad} min="1" max={cantidaDisponible} onChange={handleChange}  type="number"></input>
-      <button style={{ width: '50%', backgroundColor:'#f2d024' }} variant="warning" onClick={Compra} >Comprar</button>
+    {cantidaDisponible>0 ? ( <div style={{ textAlign:'center',color:'#FFFFFF', margin:'10px'}}> Cantidad: <input value={cantidad} min="1" max={cantidaDisponible} onChange={handleChange} type="number"></input>
+      <button style={{ width: '100%', backgroundColor:'#f2d024', boxShadow: '5px 4px'}} variant="warning" onClick={Compra} >Comprar</button>
     </div>) : 
-      <button style={{ width: '50%', backgroundColor:'#f2d024' }} variant="warning" >NO DISPONIBLE</button>
+      <button style={{ width: '100%', backgroundColor:'#f2d024', boxShadow: '5px 4px'}} variant="warning" >NO DISPONIBLE</button>
   }
     </div>
      
