@@ -13,7 +13,6 @@ const  cancelar = async (params) => {
       await remove(`reservations/${id}`)
       .then((res) => res.json())
       .then(({payload}) => {
-        console.log(payload);
         setData(payload);
       })
       .catch(() => {});

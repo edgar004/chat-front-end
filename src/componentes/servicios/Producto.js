@@ -50,7 +50,7 @@ setCantidadDisponible(cantidaDisponible-cantidad)
     </div>
 
     {cantidaDisponible>0 ? ( <div style={{ textAlign:'center',color:'#FFFFFF', margin:'10px'}}> Cantidad: <input value={cantidad} min="1" max={cantidaDisponible} onChange={handleChange} type="number"></input>
-      <button style={{ width: '100%', backgroundColor:'#f2d024', boxShadow: '5px 4px'}} variant="warning" onClick={Compra} >Comprar</button>
+      <button style={{ width: '100%', backgroundColor:'#EF6C00', boxShadow: '5px 4px'}} variant="warning" onClick={Compra} >Comprar</button>
     </div>) : 
       <button style={{ width: '100%', backgroundColor:'#f2d024', boxShadow: '5px 4px'}} variant="warning" >NO DISPONIBLE</button>
   }

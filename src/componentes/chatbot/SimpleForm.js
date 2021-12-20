@@ -8,16 +8,16 @@ import StatusCarta from '../servicios/StatusCarta';
 
 
 
-const theme  ={
-  background: "#F5F6F2",
-  fontFamily: "Segoe UI",
-  headerBgColor: "#48157a",
-  headerFontColor: "#fff",
-  headerFontSize: "25px",
-  botBubbleColor: "#D8DADA",
-  botFontColor: "#000",
-  userBubbleColor: "#06A7E8",
-  userFontColor: "#3a4a45",
+const theme = {
+  background: '#f5f8fb',
+  fontFamily: 'Helvetica Neue',
+  headerBgColor: '#EF6C00',
+  headerFontColor: '#fff',
+  headerFontSize: '15px',
+  botBubbleColor: '#EF6C00',
+  botFontColor: '#fff',
+  userBubbleColor: '#fff',
+  userFontColor: '#4a4a4a',
 };
 
 const config ={
@@ -77,12 +77,18 @@ class SimpleForm extends Component {
           id: "consultar",
           message:
             "Esto es lo que podemos ofrecerte",
-          trigger: "sugerencias",
+          trigger: "usuario",
+        },
+        {
+          id: "saludo",
+          message:
+            "Hola, en que puedo ayudar",
+          trigger: "usuario",
         },
         {
           id: "sugerencias",
           options: [
-            { value: 1, label: "Status de mis compras", trigger: "status" },
+            { value: 1, label: "Status de mis compras", trigger: "reservaciones" },
             { value: 2, label: "Precio de los reloj", trigger: "precio-servicios" },
             { value: 3, label: "comprar el producto", trigger: "comprar" },
             { value: 4, label: "¿Deseas algo mas?", trigger: "pregunta" },

@@ -9,6 +9,7 @@ export const Entrenar = () => {
   classifier.addDocument("comprar", "comprar");
   classifier.addDocument("que vendes", "comprar");
   classifier.addDocument("digame sus existencias", "precio-servicios");
+  classifier.addDocument("que tienes en tu inventario", "precio-servicios");
 
 
    classifier.addDocument("ver productos disponibles", "precio-servicios");
@@ -19,6 +20,8 @@ export const Entrenar = () => {
    classifier.addDocument("ver reservaciones", "reservaciones");
    classifier.addDocument("mis reservaciones", "reservaciones");
    classifier.addDocument("mis pedidos", "reservaciones");
+   classifier.addDocument("hola", "saludo");
+
    
    classifier.addDocument("Salir", "terminar");
    classifier.addDocument("Terminar conversacion", "terminar");

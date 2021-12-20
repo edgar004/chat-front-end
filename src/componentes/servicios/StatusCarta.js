@@ -16,7 +16,6 @@ const StatusCarta = memo(() => {
     await get(`reservations/${cedula}`)
     .then((res) => res.json())
     .then(({payload}) => {
-      console.log(payload);
       setData(payload);
     })
     .catch(() => {});
